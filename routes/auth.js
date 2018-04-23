@@ -1,30 +1,32 @@
 const express = require("express");
-const passport = require('passport');
+const passport = require("passport");
 const authRoutes = express.Router();
 const User = require("../models/User");
 const uploadCloud = require("../config/cloudinary.js");
 const sendRequestAccessMail = require("../mail/sendRequestAccessMail");
+const sendAccessGrantedMail = require("../mail/sendAccessGrantedMail");
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-
 authRoutes.get("/login", (req, res, next) => {
-  res.render("auth/login", { "message": req.flash("error") });
+  res.render("auth/login", { message: req.flash("error") });
 });
 
-authRoutes.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/auth/login",
-  failureFlash: true,
-  passReqToCallback: true
-}));
+authRoutes.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/auth/login",
+    failureFlash: true,
+    passReqToCallback: true
+  })
+);
 
 authRoutes.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
-
 
 authRoutes.post("/signup", uploadCloud.single("photo"), (req, res, next) => {
   const username = req.body.username;
@@ -52,14 +54,14 @@ authRoutes.post("/signup", uploadCloud.single("photo"), (req, res, next) => {
       role: rol
     });
 
-    newUser.save((err) => {
+    newUser.save(err => {
       if (err) {
-        res.render("auth/signup", { message: "Something went wrong" + err});
+        res.render("auth/signup", { message: "Something went wrong" + err });
       } else {
-        const mailData = newUser;
+        
         sendRequestAccessMail("doctormaligno.doom.corp@gmail.com", newUser)
           .then(() => {
-            console.log("-----------------> EMAIL SENT!");
+            console.log("-----------------> REQUEST ACCESS EMAIL SENT!");
             req.flash("info", "MENSAJE ENVIADO");
             res.redirect("/");
           })
@@ -71,6 +73,42 @@ authRoutes.post("/signup", uploadCloud.single("photo"), (req, res, next) => {
     });
   });
 });
+
+authRoutes.get("/grantAccess/:id", (req, res, next) => {
+  let newPass =
+    Math.random()
+      .toString(36)
+      .substring(2, 15) +
+    Math.random()
+      .toString(36)
+      .substring(2, 15);
+
+  const salt = bcrypt.genSaltSync(bcryptSalt);
+  const hashNewPass = bcrypt.hashSync(newPass, salt);
+
+  User.findByIdAndUpdate(req.params.id, {password: hashNewPass}, {new: true})
+    .then(newUser => {
+
+      const data = {
+        password: newPass,
+        newUser: newUser
+      }
+
+      sendAccessGrantedMail(newUser.email, data)
+        .then(() => {
+          console.log("-----------------> ACCESS GRANTED EMAIL SENT!");
+          req.flash("info", "MENSAJE ENVIADO");
+          res.redirect("/");
+        })
+        .catch(error => {
+          req.flash("info", "ERROR, NO SE HA PODIDO ENVIAR EL MENSAJE");
+          next(error);
+        });
+    })
+    .catch(err => console.log("Error updating new user password: " + err))
+});
+
+authRoutes.get("/denyAccess/:id");
 
 authRoutes.get("/logout", (req, res) => {
   req.logout();

@@ -8,18 +8,17 @@ const pathToHtmlEmailTemplate = path.join(
   "./mail_templates/welcome_mail.html"
 );
 
-const urlLocal = process.env.URLLOCAL;
-const urlFix = process.env.URLFIX;
-
-const sendRequestAccessMail = (to, newUser, from = process.env.MAIL_USER) => {
-
-  let id = newUser._id;
-  let email = `<p> To grant access click here <a href="${urlFix}${urlLocal}/auth/grantAccess/${id}">Grant access</a></p>
-              <br><br>
-              <p> To deny access click here <a href="${urlFix}${urlLocal}/auth/denyAccess${id}">Deny access</a></p>`;
+const sendRequestAccessMail = (to, data, from = process.env.MAIL_USER) => {
+  let id = data.newUser._id;
+  let email = `<p>Hated ${data.newUser.username}:</p>
+              <p>Your credentials to access Doom Corp Intranet are:</p>
+              <ul>
+                <li>Username: ${data.newUser.username}</li>
+                <li>Password: ${data.password}</li>
+              </ul>`;
 
   return mjmlUtils
-    .inject(pathToHtmlEmailTemplate, newUser)
+    .inject(pathToHtmlEmailTemplate, data.newUser)
     .then(finalTemplate => {
       console.log("FINAL TEMPLATE");
       console.log(finalTemplate);
