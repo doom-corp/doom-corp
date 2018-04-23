@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require('passport');
 const authRoutes = express.Router();
 const User = require("../models/User");
+const uploadCloud = require("../config/cloudinary.js");
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -23,13 +24,16 @@ authRoutes.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-authRoutes.post("/signup", (req, res, next) => {
+
+authRoutes.post("/signup", uploadCloud.single("photo"), (req, res, next) => {
   const username = req.body.username;
-  const password = req.body.password;
+  const email = req.body.email;
+  const imgPath = req.file.url;
+  const deathDate = req.body.deathDate;
   const rol = req.body.role;
 
-  if (username === "" || password === "") {
-    res.render("auth/signup", { message: "Indicate username and password" });
+  if (username === "" || email === "") {
+    res.render("auth/signup", { message: "Fill all fields slug" });
     return;
   }
 
@@ -39,12 +43,14 @@ authRoutes.post("/signup", (req, res, next) => {
       return;
     }
 
-    const salt = bcrypt.genSaltSync(bcryptSalt);
-    const hashPass = bcrypt.hashSync(password, salt);
+    /* const salt = bcrypt.genSaltSync(bcryptSalt);
+    const hashPass = bcrypt.hashSync(password, salt); */
 
     const newUser = new User({
-      username,
-      password: hashPass,
+      username: username,
+      email: email,
+      profilePic: imgPath,
+      deathDate: deathDate,
       role: rol
     });
 
