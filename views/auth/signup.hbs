@@ -1,15 +1,37 @@
 <!-- views/auth/signup.hbs -->
-<h2>Signup</h2>
+<h2>Request access</h2>
 
-<form action="/auth/signup" method="POST" id="form-container">
+<form action="/auth/signup" method="POST" id="form-container" enctype="multipart/form-data">
   <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="JonSnow">
+  <input id="username" type="text" name="username" placeholder="Your username">
 
   <br><br>
 
-  <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="Your password">
-  <br>
+  <label for="email">Email</label>
+  <input id="email" type="email" name="email" placeholder="Your email">
+  
+  <br><br>
+
+  <label for="photo">Profile pic</label>
+  <input id="photo" type="file" name="photo" placeholder="Your profile picture">
+  
+  <br><br>
+
+  <label for="deathDate">Birth Date</label>
+  <input id="deathDate" type="date" name="deathDate" placeholder="Your death date">
+  
+  <br><br>
+
+  <label for="role">Role</label>
+  <select name="role" id="role">
+    <option value="admin">Admin</option>
+    <option value="scientist">Científico</option>
+    <option value="executive">Ejecutivo</option>
+    <option value="minion">Minion</option>
+  </select>
+  
+  <br><br>
+
   {{#if message }}
     <div class="error-message">{{ message }}</div>
   {{/if}}
