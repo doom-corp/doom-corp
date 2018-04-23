@@ -3,6 +3,7 @@ const passport = require('passport');
 const authRoutes = express.Router();
 const User = require("../models/User");
 const uploadCloud = require("../config/cloudinary.js");
+const sendRequestAccessMail = require("../mail/sendRequestAccessMail");
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -43,9 +44,6 @@ authRoutes.post("/signup", uploadCloud.single("photo"), (req, res, next) => {
       return;
     }
 
-    /* const salt = bcrypt.genSaltSync(bcryptSalt);
-    const hashPass = bcrypt.hashSync(password, salt); */
-
     const newUser = new User({
       username: username,
       email: email,
@@ -58,7 +56,17 @@ authRoutes.post("/signup", uploadCloud.single("photo"), (req, res, next) => {
       if (err) {
         res.render("auth/signup", { message: "Something went wrong" + err});
       } else {
-        res.redirect("/");
+        const mailData = newUser;
+        sendRequestAccessMail("doctormaligno.doom.corp@gmail.com", newUser)
+          .then(() => {
+            console.log("-----------------> EMAIL SENT!");
+            req.flash("info", "MENSAJE ENVIADO");
+            res.redirect("/");
+          })
+          .catch(error => {
+            req.flash("info", "ERROR, NO SE HA PODIDO ENVIAR EL MENSAJE");
+            next(error);
+          });
       }
     });
   });
