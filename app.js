@@ -12,15 +12,18 @@ const path         = require('path');
 const session    = require("express-session");
 const MongoStore = require('connect-mongo')(session);
 const flash      = require("connect-flash");
+
+const dbURL = process.env.DBURL;
     
 
 mongoose.Promise = Promise;
 mongoose
-  .connect('mongodb://localhost/doom-corp', {useMongoClient: true})
+  .connect(dbURL) //{useMongoClient: true}
   .then(() => {
-    console.log('Connected to Mongo!')
-  }).catch(err => {
-    console.error('Error connecting to mongo', err)
+    console.log("Connected to Mongo!");
+  })
+  .catch(err => {
+    console.error("Error connecting to mongo", err);
   });
 
 const app_name = require('./package.json').name;
