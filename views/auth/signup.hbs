@@ -9,7 +9,19 @@
 
   <label for="password">Password</label>
   <input id="password" type="password" name="password" placeholder="Your password">
-  <br>
+  
+  <br><br>
+
+  <label for="role">Role</label>
+  <select name="role" id="role">
+    <option value="admin">Admin</option>
+    <option value="scientist">Científico</option>
+    <option value="executive">Ejecutivo</option>
+    <option value="minion">Minion</option>
+  </select>
+  
+  <br><br>
+
   {{#if message }}
     <div class="error-message">{{ message }}</div>
   {{/if}}

@@ -18,7 +18,7 @@ const dbURL = process.env.DBURL;
 
 mongoose.Promise = Promise;
 mongoose
-  .connect(dbURL) //{useMongoClient: true}
+  .connect(dbURL, { useMongoClient: true }) //
   .then(() => {
     console.log("Connected to Mongo!");
   })
@@ -36,27 +36,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(
-  session({
-    secret: "just be evil",
-    resave: true,
-    saveUninitialized: true,
-    cookie: { maxAge: 60000 },
-    store: new MongoStore({
-      mongooseConnection: mongoose.connection,
-      ttl: 24 * 60 * 60 // 1 day
-    })
-  })
-);
-app.use((req, res, next) => {
-  if (req.session.currentUser) {
-    res.locals.currentUserInfo = req.session.currentUser;
-    res.locals.isUserLoggedIn = true;
-  } else {
-    res.locals.isUserLoggedIn = false;
-  }
-  next();
-});
+
 
 // Express View engine setup
 
