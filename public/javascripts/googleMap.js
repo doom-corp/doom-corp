@@ -2,10 +2,10 @@
       function initMap() {
         const map = new google.maps.Map(document.getElementById('map'), {
           center: {
-            lat: 40.446221, 
-            lng: -3.733238
+            lat: 40.445354, 
+            lng: -3.73492
           }, 
-          zoom: 13
+          zoom: 15
         });
         
         const doomCorpMarker = new google.maps.Marker({
@@ -16,6 +16,8 @@
           map: map,
           title: "DOOMCORP :D"
         });
+
+        
 
         const input = /** @type {!HTMLInputElement} */(
             document.getElementById('pac-input'));
@@ -83,7 +85,47 @@
           });
         }
 
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function (position) {
+            const user_location = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+      
+            // Center map with user location
+            map.setCenter(user_location);
+      
+            // Add a marker for your user location
+            const doomCorpMarker = new google.maps.Marker({
+              position: {
+                lat: user_location.lat,
+                lng: user_location.lng
+              },
+              map: map,
+              title: "Usted está aquí, nosotros no."
+            });
+      
+          }, function () {
+            console.log('Error in the geolocation service.');
+          });
+        } else {
+          console.log('Browser does not support geolocation.');
+        }
+      
+
         setupClickListener('changetype-all', []);
         setupClickListener('changetype-address', ['address']);
         setupClickListener('changetype-geocode', ['geocode']);
       }
+
+      var geocoder = new google.maps.Geocoder();
+      var address = "new york";
+      
+      geocoder.geocode( { 'address': address}, function(results, status) {
+      
+        if (status == google.maps.GeocoderStatus.OK) {
+          var latitude = results[0].geometry.location.lat();
+          var longitude = results[0].geometry.location.lng();
+          alert(latitude);
+        } 
+      });      
