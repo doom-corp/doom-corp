@@ -1,0 +1,27 @@
+<div class="container-fluid profile-container">
+  <div class="row profile-top-row">
+    <div class="col-3">
+      <img width="200px" height="200px" class="img-thumbnail border" src="{{user.profilePic}}" alt="User profile pic">
+    </div>
+    <div class="col-9">
+      <h1>Employee: {{user.username}}</h1>
+      <h4>Profile: {{user.role}}</h4>
+      <p>Seniority: {{user.created_at}}</p>
+    </div>
+  </div>
+  <hr> {{!-- PERSONALIZAR --}}
+  <div class="row">
+
+    {{#equal unicorns ponies }}
+      <p>That's amazing, unicorns are actually undercover ponies</p>
+    {{/equal}}
+    
+    <div class="col-3 profile-left-panel">
+      {{!-- PROFILE OPTIONS --}}
+    </div>
+    <div class="col-9">
+      {{!-- PROFILE OPTION SELECTED --}}
+      {{!-- MAP HERE !! --}}
+    </div>
+  </div>
+</div>

@@ -32,4 +32,18 @@ a {
   width: 20%;
   margin-top: 20%; }
 
+.profile-container {
+  width: 100%; }
+
+.profile-top-row {
+  width: 90%;
+  margin: 0 auto;
+  padding: 30px 0px;
+  border-bottom: 2px solid white; }
+
+.profile-left-panel {
+  position: fixed;
+  height: 600px;
+  border-right: 2px solid white; }
+
 /*# sourceMappingURL=style.css.map */

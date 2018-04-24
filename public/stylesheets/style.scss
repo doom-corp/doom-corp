@@ -1,5 +1,4 @@
 // HELPERS
-
 * {
     margin: 0;
     padding: 0;
@@ -33,12 +32,30 @@ a {
 }
 
 .log-button {
-  padding: 5px 15px;
-  border: 2px solid black;
-  background-color: red;
+    padding: 5px 15px;
+    border: 2px solid black;
+    background-color: red;
 }
 
 .sign-up-container {
     width: 20%;
     margin-top: 20%;
+}
+
+// PROFILE
+.profile-container {
+    width: 100%;
+}
+
+.profile-top-row {
+    width: 90%;
+    margin: 0 auto;
+    padding: 30px 0px;
+    border-bottom: 2px solid white;
+}
+
+.profile-left-panel {
+    position: fixed;
+    height: 600px;
+    border-right: 2px solid white;
 }
