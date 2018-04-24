@@ -17,11 +17,8 @@
           title: "DOOMCORP :D"
         });
 
-        const input = /** @type {!HTMLInputElement} */(
-            document.getElementById('pac-input'));
+        const input = /** @type {!HTMLInputElement} */(document.getElementById('pac-input'));
         
- 
-
         const types = document.getElementById('type-selector');
         map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
         map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
@@ -114,19 +111,26 @@
         }
 
         
-        var geocoder = new google.maps.Geocoder();
-        var direction = input.toString();
+         var geocoder = new google.maps.Geocoder();
+       
+        var direction = "Madrid";
+        document.getElementById("pac-input").addEventListener("change", function(){
+          var direction = document.getElementById("pac-input").value;
+          console.log("direction: " + direction);
+
+          geocoder.geocode( { 'address': direction}, function(results, status) {
+        
+            if (status == google.maps.GeocoderStatus.OK) {
+              var latitude = results[0].geometry.location.lat();
+              var longitude = results[0].geometry.location.lng();
+              console.log(latitude + "," + longitude)
+            } 
+          }); 
+          
+        })
+
         
         
-        geocoder.geocode( { 'address': direction}, function(results, status) {
-        
-          if (status == google.maps.GeocoderStatus.OK) {
-            var latitude = results[0].geometry.location.lat();
-            var longitude = results[0].geometry.location.lng();
-            console.log(latitude + "," + longitude)
-          } 
-        });    
- 
         setupClickListener('changetype-all', []);
         setupClickListener('changetype-address', ['address']);
         setupClickListener('changetype-geocode', ['geocode']);
