@@ -11,6 +11,15 @@
   width: 80%;
   margin: 0 auto; }
 
+#pac-input {
+  /*display: none;*/ }
+
+#menu1 {
+  background: red; }
+
+#shoot-btn {
+  background: red; }
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: black; }
