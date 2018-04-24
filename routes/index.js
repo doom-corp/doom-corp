@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
 
 /* GET dashboard */
 router.get("/dashboard", ensureLoggedIn("/"), (req, res, next) => {
-  res.render("dashboard")
+  res.render("dashboard", { user: req.user });
 })
 
 module.exports = router;

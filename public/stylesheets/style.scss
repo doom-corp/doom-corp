@@ -1,6 +1,12 @@
+// HELPERS
+
 * {
     margin: 0;
     padding: 0;
+}
+
+.red-text {
+    color: red;
 }
 
 body {
@@ -17,16 +23,22 @@ a {
     width: 100%;
 }
 
-.container {
-    background-color: blue;
-    width: 100%;
-}
-
 .index-navbar {
     background-color: red;
+    height: 60px;
+}
+
+.index-main {
+    color: red;
 }
 
 .log-button {
-  
+  padding: 5px 15px;
+  border: 2px solid black;
+  background-color: red;
 }
 
+.sign-up-container {
+    width: 20%;
+    margin-top: 20%;
+}

@@ -1,20 +1,20 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row index-navbar">
-    <div class="col-sm-12 col-6 logo">LOGO IMAGE</div>
-    <div class="col-sm-12 col-6">
+    <div class="col-6 logo">LOGO IMAGE</div>
+    <div class="col-6">
       {{#if user}}
-      <p>Welcome to {{user.username}}</p>
-      <a href="/auth/logout">LOGOUT</a>
+      <a href="/auth/logout" class="log-button">LOGOUT</a>
+      <a href="/dashboard" class="log-button">DASHBOARD</a>
+      <a href="/user" class="log-button">USER PANEL</a>
       {{else}}
-      <p>LOGIN FIRST!!!</p>
-      <a href="/auth/signup">REQUEST ACCESS</a>
-      <a href="/auth/login">LOGIN</a>
+      <a href="/auth/signup" class="log-button">REQUEST ACCESS</a>
+      <a href="/auth/login" class="log-button">LOGIN</a>
       {{/if}}
     </div>
   </div>
-  <div class="row">
-    <div class="col index-main d-flex align-self-center">
-      <h1>{{title}}</h1>
+  <div class="row index-main align-items-center">
+    <div class="col index-main">
+      <h1>DOOM CORP</h1>
       <p>Welcome to {{title}}</p>
     </div>
   </div>
