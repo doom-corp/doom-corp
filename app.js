@@ -63,7 +63,7 @@ hbs.registerHelper('ifUndefined', (value, options) => {
   }
 });
 
-Handlebars.registerHelper("equal", function(lvalue, rvalue, options) {
+hbs.registerHelper("equal", function(lvalue, rvalue, options) {
   if (arguments.length < 3)
     throw new Error("Handlebars Helper equal needs 2 parameters");
   if (lvalue != rvalue) {
