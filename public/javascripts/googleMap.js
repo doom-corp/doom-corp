@@ -1,50 +1,89 @@
-function initMap() {
-  const doomCorp = {
-  	lat: 40.446335, 
-    lng: -3.734225, 
-  };
-  const map = new google.maps.Map(
-    document.getElementById('map'),
-    {
-      zoom: 15,
-    }
-  );
-  const doomCorpMarker = new google.maps.Marker({
-    position: {
-      lat: doomCorp.lat,
-      lng: doomCorp.lng
-    },
-    map: map,
-    title: "DOOMCORP :D"
-  });
 
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      const user_location = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
+      function initMap() {
+        const map = new google.maps.Map(document.getElementById('map'), {
+          center: {
+            lat: 40.446221, 
+            lng: -3.733238
+          }, 
+          zoom: 13
+        });
+        
+        const doomCorpMarker = new google.maps.Marker({
+          position: {
+            lat: 40.446221,
+            lng: -3.733238
+          },
+          map: map,
+          title: "DOOMCORP :D"
+        });
 
-      // Center map with user location
-      map.setCenter(user_location);
+        const input = /** @type {!HTMLInputElement} */(
+            document.getElementById('pac-input'));
 
-      // Add a marker for your user location
-      const doomCorpMarker = new google.maps.Marker({
-        position: {
-          lat: user_location.lat,
-          lng: user_location.lng
-        },
-        map: map,
-        title: "Usted está aquí, nosotros no."
-      });
+        const types = document.getElementById('type-selector');
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
 
-    }, function () {
-      console.log('Error in the geolocation service.');
-    });
-  } else {
-    console.log('Browser does not support geolocation.');
-  }
-}
+        const autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
 
-initMap();
+        const infowindow = new google.maps.InfoWindow();
+        const marker = new google.maps.Marker({
+          map: map,
+          anchorPoint: new google.maps.Point(0, 0)
+        });
 
+        autocomplete.addListener('place_changed', function() {
+          infowindow.close();
+          marker.setVisible(false);
+          const place = autocomplete.getPlace();
+          if (!place.geometry) {
+            // User entered the name of a Place that was not suggested and
+            // pressed the Enter key, or the Place Details request failed.
+            window.alert("No details available for input: '" + place.name + "'");
+            return;
+          }
+
+          // If the place has a geometry, then present it on a map.
+          if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);  // Why 17? Because it looks good.
+          }
+          marker.setIcon(/** @type {google.maps.Icon} */({
+            url: place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(35, 35)
+          }));
+          marker.setPosition(place.geometry.location);
+          marker.setVisible(true);
+
+          const address = '';
+          if (place.address_components) {
+            address = [
+              (place.address_components[0] && place.address_components[0].short_name || ''),
+              (place.address_components[1] && place.address_components[1].short_name || ''),
+              (place.address_components[2] && place.address_components[2].short_name || '')
+            ].join(' ');
+          }
+
+          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+          infowindow.open(map, marker);
+        });
+
+        // Sets a listener on a radio button to change the filter type on Places
+        // Autocomplete.
+        function setupClickListener(id, types) {
+          const radioButton = document.getElementById(id);
+          radioButton.addEventListener('click', function() {
+            autocomplete.setTypes(types);
+          });
+        }
+
+        setupClickListener('changetype-all', []);
+        setupClickListener('changetype-address', ['address']);
+        setupClickListener('changetype-geocode', ['geocode']);
+      }
