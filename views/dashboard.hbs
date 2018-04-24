@@ -1,7 +1,22 @@
 <h3>DoomCorp Map</h3>
-<div id="map"></div>
+    <input id="pac-input" class="controls" type="text"
+        placeholder="Enter a location">
+    <div id="type-selector" class="controls">
+      <input type="radio" name="type" id="changetype-all" checked="checked">
+      <label for="changetype-all">All</label>
+
+      <input type="radio" name="type" id="changetype-address">
+      <label for="changetype-address">Addresses</label>
+
+      <input type="radio" name="type" id="changetype-geocode">
+      <label for="changetype-geocode">Geocodes</label>
+    </div>
+    <div id="map"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
   crossorigin="anonymous"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIszCKHrlW4gRlxCKrVivvSMueVwmntNg"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIszCKHrlW4gRlxCKrVivvSMueVwmntNg&libraries=places&callback=initMap"
+        async defer></script>
 <script src='/javascripts/googleMap.js'></script>
+
+
