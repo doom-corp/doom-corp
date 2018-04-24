@@ -20,7 +20,7 @@
         const input = /** @type {!HTMLInputElement} */(document.getElementById('pac-input'));
         
         const types = document.getElementById('type-selector');
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
         map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
 
         const autocomplete = new google.maps.places.Autocomplete(input);
@@ -29,7 +29,8 @@
         const infowindow = new google.maps.InfoWindow();
         const marker = new google.maps.Marker({
           map: map,
-          anchorPoint: new google.maps.Point(0, 0)
+          anchorPoint: new google.maps.Point(0, 0),
+          icon: image
         });
 
         autocomplete.addListener('place_changed', function() {
@@ -43,6 +44,9 @@
             return;
           }
 
+          var image = "https://image.shutterstock.com/image-vector/bomb-icon-trendy-flat-style-260nw-673948843.jpg"
+          
+
           // If the place has a geometry, then present it on a map.
           if (place.geometry.viewport) {
             map.fitBounds(place.geometry.viewport);
@@ -50,12 +54,14 @@
             map.setCenter(place.geometry.location);
             map.setZoom(15);  
           }
+
           marker.setIcon(/** @type {google.maps.Icon} */({
             url: place.icon,
             size: new google.maps.Size(71, 71),
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(17, 34),
-            scaledSize: new google.maps.Size(35, 35)
+            scaledSize: new google.maps.Size(35, 35),
+            
           }));
           marker.setPosition(place.geometry.location);
           marker.setVisible(true);

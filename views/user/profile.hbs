@@ -19,12 +19,13 @@
     <div class="col-3 profile-left-panel">
       {{!-- PROFILE OPTIONS --}}
         <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle btn-lg btn-danger" id="menu1" type="button" data-toggle="dropdown">DESTROY NEW CITY</button>
+    <button class="btn btn-primary dropdown-toggle btn-lg btn-danger" id="menu1" type="button" data-toggle="dropdown">SEARCH AND DESTROY</button>
     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
       <li>
         <form>
-        <input type="button" class="btn btn-danger btn-lg" id = "shoot-btn" value="SHOOT"><br>
-          <input type="text" class="form-control" id="place-to-bomb" placeholder="Enter a location">
+        <input type="button" class="btn btn-danger btn-lg" id = "shoot-btn" value="SHOOT">
+          <input id="pac-input" class="controls" type="text" placeholder="Insert a place to nuke ❤">
+      
         </form>
         
       </li>
@@ -36,7 +37,6 @@
     <div class="col-9">
       {{!-- PROFILE OPTION SELECTED --}}
       <h3>DoomCorp Map</h3>
-      <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
       <div id="type-selector" class="controls">
         <input type="radio" name="type" id="changetype-all" checked="checked">
         <label for="changetype-all">All</label>
