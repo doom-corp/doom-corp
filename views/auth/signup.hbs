@@ -1,47 +1,43 @@
-<!-- views/auth/signup.hbs -->
-<h2>Request access</h2>
+<div class="container sign-up-container">
+  <h2 class="red-text">Request access</h2>
+  <form action="/auth/signup" method="POST" id="form-container" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input id="username" class="form-control" type="text" name="username" placeholder="Your username">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" class="form-control" type="email" name="email" aria-describedby="emailHelp" placeholder="Your email">
+    </div>
+    <div class="form-group">
+      <label for="photo">Profile pic</label>
+      <input id="photo" class="form-control" type="file" name="photo" placeholder="Your profile picture">
+    </div>
+    <div class="form-group">
+      <label for="deathDate">Birth Date</label>
+      <input id="deathDate" class="form-control" type="date" name="deathDate" placeholder="Your death date">
+      <div class="form-group"></div>
+    </div>
+    <div class="form-group">
+      <label for="role">Role</label>
+      <select name="role" id="role" class="form-control">
+        <option value="admin">Admin</option>
+        <option value="scientist">Científico</option>
+        <option value="executive">Ejecutivo</option>
+        <option value="minion">Minion</option>
+      </select>
+    </div>
 
-<form action="/auth/signup" method="POST" id="form-container" enctype="multipart/form-data">
-  <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="Your username">
+    {{#if message }}
+    <div class="error-message form-group">{{ message }}</div>
+    {{/if}}
 
-  <br><br>
-
-  <label for="email">Email</label>
-  <input id="email" type="email" name="email" placeholder="Your email">
-  
-  <br><br>
-
-  <label for="photo">Profile pic</label>
-  <input id="photo" type="file" name="photo" placeholder="Your profile picture">
-  
-  <br><br>
-
-  <label for="deathDate">Birth Date</label>
-  <input id="deathDate" type="date" name="deathDate" placeholder="Your death date">
-  
-  <br><br>
-
-  <label for="role">Role</label>
-  <select name="role" id="role">
-    <option value="admin">Admin</option>
-    <option value="scientist">Científico</option>
-    <option value="executive">Ejecutivo</option>
-    <option value="minion">Minion</option>
-  </select>
-  
-  <br><br>
-
-  {{#if message }}
-    <div class="error-message">{{ message }}</div>
-  {{/if}}
-
-  <br><br>
-
-  <button>Create account</button>
-
-  <p class="account-message">
-    Do you already have an account?
-    <a href="/auth/login">Login</a>
-  </p>
-</form>
+    <div class="form-group">
+      <button class="btn log-button form-group">Create account</button>
+      <p class="account-message">
+        <span class="red-text">Do you already have an account?</span>
+        <a href="/auth/login">Login</a>
+      </p>
+    </div>
+  </form>
+</div>
