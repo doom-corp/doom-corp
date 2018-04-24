@@ -6,4 +6,10 @@ router.get('/', (req, res, next) => {
   res.render('index', {user: req.user});
 });
 
+
+/* GET dashboard */
+router.get("/dashboard", ensureLoggedIn("/"), (req, res, next) => {
+  res.render("dashboard")
+})
+
 module.exports = router;

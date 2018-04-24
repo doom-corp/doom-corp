@@ -1,4 +1,4 @@
-function startMap() {
+function initMap() {
   const doomCorp = {
   	lat: 40.446335, 
     lng: -3.734225, 
@@ -46,5 +46,5 @@ function startMap() {
   }
 }
 
-startMap();
+initMap();
 
