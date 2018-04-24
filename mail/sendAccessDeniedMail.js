@@ -8,15 +8,10 @@ const pathToHtmlEmailTemplate = path.join(
   "./mail_templates/welcome_mail.html"
 );
 
-const urlLocal = process.env.URLLOCAL;
-const urlFix = process.env.URLFIX;
-
-const sendRequestAccessMail = (to, newUser, from = process.env.MAIL_USER) => {
-
+const sendAccessDenied = (to, newUser, from = process.env.MAIL_USER) => {
   let id = newUser._id;
-  let email = `<p> To grant access click here <a href="${urlFix}${urlLocal}/auth/grantAccess/${id}">Grant access</a></p>
-              <br><br>
-              <p> To deny access click here <a href="${urlFix}${urlLocal}/auth/denyAccess/${id}">Deny access</a></p>`;
+  let email = `<p>Hated ${newUser.username}:</p>
+              <p>You are not allowed to access Dom Corp. Check your sins and be as much evil as you can!</p>`;
 
   return mjmlUtils
     .inject(pathToHtmlEmailTemplate, newUser)
@@ -26,13 +21,13 @@ const sendRequestAccessMail = (to, newUser, from = process.env.MAIL_USER) => {
 
       return transporter
         .sendMail({
-          from: `"Request for access" <${from}>`,
+          from: `"Access Denied" <${from}>`,
           to,
-          subject: "New user requests access", // Asunto
+          subject: "Your access has been denied", // Asunto
           //html: finalTemplate
           html: email
         })
         .then(info => console.log(info));
     });
 };
-module.exports = sendRequestAccessMail;
+module.exports = sendAccessDenied;
