@@ -19,6 +19,8 @@
 
         const input = /** @type {!HTMLInputElement} */(
             document.getElementById('pac-input'));
+        
+ 
 
         const types = document.getElementById('type-selector');
         map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
@@ -113,7 +115,8 @@
 
         
         var geocoder = new google.maps.Geocoder();
-        var direction = "France";
+        var direction = input.toString();
+        
         
         geocoder.geocode( { 'address': direction}, function(results, status) {
         
