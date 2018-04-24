@@ -5,6 +5,7 @@ const User = require("../models/User");
 const uploadCloud = require("../config/cloudinary.js");
 const sendRequestAccessMail = require("../mail/sendRequestAccessMail");
 const sendAccessGrantedMail = require("../mail/sendAccessGrantedMail");
+const sendAccessDeniedMail = require("../mail/sendAccessDeniedMail");
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -17,7 +18,7 @@ authRoutes.get("/login", (req, res, next) => {
 authRoutes.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/dashboard",
     failureRedirect: "/auth/login",
     failureFlash: true,
     passReqToCallback: true
@@ -108,7 +109,23 @@ authRoutes.get("/grantAccess/:id", (req, res, next) => {
     .catch(err => console.log("Error updating new user password: " + err))
 });
 
-authRoutes.get("/denyAccess/:id");
+authRoutes.get("/denyAccess/:id", (req, res, next) => {
+  User.findByIdAndRemove(req.params.id)
+    .then(newUser => {
+      console.log("the new userrrrrrrrrrrrrrrrrr" + newUser);
+      sendAccessDeniedMail(newUser.email, newUser)
+        .then(() => {
+          console.log("-----------------> ACCESS DENIED EMAIL SENT!");
+          req.flash("info", "MENSAJE ENVIADO");
+          res.redirect("/");
+        })
+        .catch(error => {
+          req.flash("info", "ERROR, NO SE HA PODIDO ENVIAR EL MENSAJE");
+          next(error);
+        });
+    })
+    .catch(err => "Error deleting user: " + err)
+})
 
 authRoutes.get("/logout", (req, res) => {
   req.logout();
