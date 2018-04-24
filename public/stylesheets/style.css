@@ -1,6 +1,10 @@
+* {
+  margin: 0;
+  padding: 0; }
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: black; }
 
 a {
   color: #00B7FF; }
@@ -8,5 +12,12 @@ a {
 #map {
   height: 500px;
   width: 100%; }
+
+.container {
+  background-color: blue;
+  width: 100%; }
+
+.index-navbar {
+  background-color: red; }
 
 /*# sourceMappingURL=style.css.map */
