@@ -5,16 +5,17 @@
 .red-text {
   color: red; }
 
+#map {
+  height: 500px;
+  width: 80%;
+  margin: 0 auto; }
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: black; }
 
 a {
   color: #00B7FF; }
-
-#map {
-  height: 500px;
-  width: 100%; }
 
 .index-navbar {
   background-color: red;
@@ -42,7 +43,6 @@ a {
   border-bottom: 2px solid white; }
 
 .profile-left-panel {
-  position: fixed;
   height: 600px;
   border-right: 2px solid white; }
 

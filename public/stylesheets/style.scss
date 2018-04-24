@@ -8,6 +8,14 @@
     color: red;
 }
 
+// IDs
+#map {
+    height: 500px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+// HTML TAGS
 body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
     background-color: black;
@@ -15,11 +23,6 @@ body {
 
 a {
     color: #00B7FF;
-}
-
-#map {
-    height: 500px;
-    width: 100%;
 }
 
 .index-navbar {
@@ -55,7 +58,7 @@ a {
 }
 
 .profile-left-panel {
-    position: fixed;
+    
     height: 600px;
     border-right: 2px solid white;
 }
