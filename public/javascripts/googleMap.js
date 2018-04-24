@@ -17,8 +17,6 @@
           title: "DOOMCORP :D"
         });
 
-        
-
         const input = /** @type {!HTMLInputElement} */(
             document.getElementById('pac-input'));
 
@@ -51,7 +49,7 @@
             map.fitBounds(place.geometry.viewport);
           } else {
             map.setCenter(place.geometry.location);
-            map.setZoom(17);  // Why 17? Because it looks good.
+            map.setZoom(15);  
           }
           marker.setIcon(/** @type {google.maps.Icon} */({
             url: place.icon,
@@ -63,7 +61,7 @@
           marker.setPosition(place.geometry.location);
           marker.setVisible(true);
 
-          const address = '';
+          let address = '';
           if (place.address_components) {
             address = [
               (place.address_components[0] && place.address_components[0].short_name || ''),
@@ -74,6 +72,7 @@
 
           infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
           infowindow.open(map, marker);
+
         });
 
         // Sets a listener on a radio button to change the filter type on Places
@@ -111,21 +110,22 @@
         } else {
           console.log('Browser does not support geolocation.');
         }
-      
 
+        
+        var geocoder = new google.maps.Geocoder();
+        var direction = "France";
+        
+        geocoder.geocode( { 'address': direction}, function(results, status) {
+        
+          if (status == google.maps.GeocoderStatus.OK) {
+            var latitude = results[0].geometry.location.lat();
+            var longitude = results[0].geometry.location.lng();
+            console.log(latitude + "," + longitude)
+          } 
+        });    
+ 
         setupClickListener('changetype-all', []);
         setupClickListener('changetype-address', ['address']);
         setupClickListener('changetype-geocode', ['geocode']);
       }
 
-      var geocoder = new google.maps.Geocoder();
-      var address = "new york";
-      
-      geocoder.geocode( { 'address': address}, function(results, status) {
-      
-        if (status == google.maps.GeocoderStatus.OK) {
-          var latitude = results[0].geometry.location.lat();
-          var longitude = results[0].geometry.location.lng();
-          alert(latitude);
-        } 
-      });      
