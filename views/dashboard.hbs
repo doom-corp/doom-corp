@@ -8,12 +8,38 @@
       {{/if}}
     </div>
   </div>
-  <div class="row">
+  <div class="row dashboard-main-content-wrapper">
     <div class="col-2">LEFT SIDEBAR</div>
     <div class="col-8">
-      
+
+      <div class="new-post">
+        <form action="/newpost" method="POST" enctype="multipart/form-data">
+          <div class="input-group">
+            <button class="btn log-button">SHARE YOUR NIGHTMARES</button>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="photo" name="photo">
+              <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+            </div>
+            <div class="input-group">
+              <textarea name="postcontent" id="postcontent" cols="30" rows="10"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      {{#if message }}
+      <div class="error-message form-group">{{ message }}</div>
+      {{/if}}
+
+      {{#each posts}}
+      <div class="old-post">
+        <div class="post-title">
+          <p>{{content}}</p>
+        </div>
+      </div>
+      {{/each}}
+
     </div>
     <div class="col-2">RIGHT SIDEBAR</div>
   </div>
 </div>
-

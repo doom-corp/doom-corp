@@ -1,6 +1,7 @@
 * {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  color: red; }
 
 .red-text {
   color: red; }
@@ -45,5 +46,8 @@ a {
 .profile-left-panel {
   height: 600px;
   border-right: 2px solid white; }
+
+.dashboard-main-content-wrapper {
+  margin-top: 40px; }
 
 /*# sourceMappingURL=style.css.map */
