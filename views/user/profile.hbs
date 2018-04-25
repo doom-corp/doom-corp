@@ -13,42 +13,58 @@
   <div class="row">
 
     {{!-- {{#equal unicorns ponies }}
-      <p>That's amazing, unicorns are actually undercover ponies</p>
+    <p>That's amazing, unicorns are actually undercover ponies</p>
     {{/equal}} --}}
-    
+
     <div class="col-3 profile-left-panel">
       {{!-- PROFILE OPTIONS --}}
-        <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle btn-lg btn-danger" id="menu1" type="button" data-toggle="dropdown">SEARCH AND DESTROY</button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-      <li>
-        <form action="/attack" method="POST">
-
-        <input type="submit" class="btn btn-danger btn-lg" id = "shoot-btn" value="LETS DO THIS">
-        <input id="pac-input" class="controls" type="text" placeholder="Insert a place to attack ❤">
-      
-        </form>
-        
-      </li>
-      
-      
-    </ul>
-  </div>
+      <ul>
+        <li>
+          <input id="pac-input" class="controls" type="text" placeholder="Insert a place to attack ❤">
+        </li>
+        <li>Check your payslip</li>
+        <li>Change your password</li>
+      </ul>
     </div>
     <div class="col-9">
       {{!-- PROFILE OPTION SELECTED --}}
-      <h3>DoomCorp Map</h3>
-      <div id="type-selector" class="controls">
-        <input type="radio" name="type" id="changetype-all" checked="checked">
-        <label for="changetype-all">All</label>
-      
-        <input type="radio" name="type" id="changetype-address">
-        <label for="changetype-address">Addresses</label>
-      
-        <input type="radio" name="type" id="changetype-geocode">
-        <label for="changetype-geocode">Geocodes</label>
+      <div id="map-wrapper">
+        <h3>DoomCorp Map</h3>
+        <div id="type-selector" class="controls">
+          <input type="radio" name="type" id="changetype-all" checked="checked">
+          <label for="changetype-all">All</label>
+
+          <input type="radio" name="type" id="changetype-address">
+          <label for="changetype-address">Addresses</label>
+
+          <input type="radio" name="type" id="changetype-geocode">
+          <label for="changetype-geocode">Geocodes</label>
+        </div>
+        <div id="map"></div>
       </div>
-      <div id="map"></div>
+
+      <div id="pass-changer-wrapper">
+        <form action="/user/changepass" method="POST">
+          <div class="form-group">
+            <label for="currentpass">Current password</label>
+            <input id="currentpass" class="form-control" type="text" name="currentpass" placeholder="Current password">
+          </div>
+          <div class="form-group">
+            <label for="newpass">New password</label>
+            <input id="newpass" class="form-control" type="text" name="newpass" placeholder="New password">
+          </div>
+          <div class="form-group">
+            <button class="btn log-button">Change your password</button>
+          </div>
+        </form>
+         {{#if message }}
+        <div class="error-message form-group">{{ message }}</div>
+        {{/if}}
+      </div>
+
+      <div class="pdf">
+        <a href="/user/pdf" class="btn log-btn">Generate your montly payslip</a>
+      </div>
     </div>
   </div>
 </div>
