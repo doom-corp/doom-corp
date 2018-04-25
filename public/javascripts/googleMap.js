@@ -30,7 +30,6 @@
         const marker = new google.maps.Marker({
           map: map,
           anchorPoint: new google.maps.Point(0, 0),
-          icon: image
         });
 
         autocomplete.addListener('place_changed', function() {
@@ -44,7 +43,6 @@
             return;
           }
 
-          var image = "https://image.shutterstock.com/image-vector/bomb-icon-trendy-flat-style-260nw-673948843.jpg"
           
 
           // If the place has a geometry, then present it on a map.

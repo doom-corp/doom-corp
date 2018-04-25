@@ -10,4 +10,6 @@ router.get("/", ensureLoggedIn("/"), (req, res, next) => {
   res.render("user/profile", { user: req.user });
 });
 
+
+
 module.exports = router;

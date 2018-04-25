@@ -1,9 +1,7 @@
 const express = require('express');
 const router  = express.Router();
-const Post = require("../models/Post");
-const uploadCloud = require("../config/cloudinary.js");
-
 const ensureLoggedIn = require("../middlewares/ensureLoggedIn");
+
 
 /* GET home page */
 router.get('/', (req, res, next) => {
@@ -25,25 +23,11 @@ router.get("/dashboard", ensureLoggedIn("/"), (req, res, next) => {
     .catch(err => `Error finding posts: ${err}`);
 })
 
+/*POST attack*/ 
+router.get("/attack", ensureLoggedIn("/"), (req, res, next) => {
+  
+  //res.render("dashboard", { user: req.user });
+})
 
-
-/* POST new posts */
-
-router.post("/newpost", uploadCloud.single("photo"), (req, res, next) => {
-  let content = req.body.postcontent;
-
-  if (content === "") {
-    res.render("dashboard", { message: "Provide some evil content madafaka" });
-    return;
-  }
-
-  Post.create({ 
-    creatorId: req.user._id, 
-    content: content, 
-    postPic: req.file.url 
-  })
-    .then(() => res.redirect("/dashboard"))
-    .catch(err => `Error creating the post ${err}`)
-});
 
 module.exports = router;
