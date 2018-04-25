@@ -10,36 +10,49 @@
   </div>
   <div class="row dashboard-main-content-wrapper">
     <div class="col-2">LEFT SIDEBAR</div>
+    
     <div class="col-8">
 
       <div class="new-post">
         <form action="/newpost" method="POST" enctype="multipart/form-data">
-          <div class="input-group">
+          <div class="form-group">
             <button class="btn log-button">SHARE YOUR NIGHTMARES</button>
             <div class="custom-file">
               <input type="file" class="custom-file-input" id="photo" name="photo">
               <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
             </div>
-            <div class="input-group">
-              <textarea name="postcontent" id="postcontent" cols="30" rows="10"></textarea>
-            </div>
+          </div>
+          <div class="form-group">
+            <label for="posttitle">Title</label>
+            <input id="posttitle" class="form-control" type="text" name="posttitle" placeholder="Post title">
+          </div>
+          <div class="form-group">
+            <textarea name="postcontent" id="postcontent" cols="30" rows="10"></textarea>
           </div>
         </form>
       </div>
 
-      {{#if message }}
+       {{#if message }}
       <div class="error-message form-group">{{ message }}</div>
       {{/if}}
 
-      {{#each posts}}
+       {{#each posts}}
       <div class="old-post">
         <div class="post-title">
+          <p>{{title}}</p>
+          <small>By {{creatorId.username}} // {{created_at}}</small>
+        </div>
+        <div class="post-pic">
+          <img src="{{postPic}}" alt="Post pic">
+        </div>
+        <div class="post-content">
           <p>{{content}}</p>
         </div>
       </div>
       {{/each}}
 
     </div>
+
     <div class="col-2">RIGHT SIDEBAR</div>
   </div>
 </div>

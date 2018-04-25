@@ -18,7 +18,7 @@ router.get("/dashboard", ensureLoggedIn("/"), (req, res, next) => {
     .sort({ created_at: "descending" })
     .populate('creatorId')
     .then(posts => {
-      console.log(posts);
+      console.log(req.user);
       const data = { user: req.user, posts: posts };
       res.render("dashboard", data);
     })
@@ -31,14 +31,16 @@ router.get("/dashboard", ensureLoggedIn("/"), (req, res, next) => {
 
 router.post("/newpost", uploadCloud.single("photo"), (req, res, next) => {
   let content = req.body.postcontent;
+  let title = req.body.posttitle;
 
-  if (content === "") {
+  if (title === "" || content === "") {
     res.render("dashboard", { message: "Provide some evil content madafaka" });
     return;
   }
 
   Post.create({ 
     creatorId: req.user._id, 
+    title: title,
     content: content, 
     postPic: req.file.url 
   })
