@@ -60,7 +60,7 @@ authRoutes.post("/signup", uploadCloud.single("photo"), (req, res, next) => {
         res.render("auth/signup", { message: "Something went wrong" + err });
       } else {
         
-        sendRequestAccessMail("doctormaligno.doom.corp@gmail.com", newUser)
+        sendRequestAccessMail(process.env.MAIL_USER, newUser)
           .then(() => {
             console.log("-----------------> REQUEST ACCESS EMAIL SENT!");
             req.flash("info", "MENSAJE ENVIADO");
@@ -84,7 +84,7 @@ authRoutes.get("/grantAccess/:id", (req, res, next) => {
       .toString(36)
       .substring(2, 15);
 
-  const salt = bcrypt.genSaltSync(bcryptSalt);
+  let salt = bcrypt.genSaltSync(bcryptSalt);
   const hashNewPass = bcrypt.hashSync(newPass, salt);
 
   User.findByIdAndUpdate(req.params.id, {password: hashNewPass}, {new: true})

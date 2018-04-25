@@ -2,6 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const uploadCloud = require("../config/cloudinary.js");
 const ensureLoggedIn = require("../middlewares/ensureLoggedIn");
+const Post = require("../models/Post");
 
 
 /* GET home page */
@@ -25,9 +26,9 @@ router.get("/dashboard", ensureLoggedIn("/"), (req, res, next) => {
 })
 
 /*POST attack*/ 
-router.get("/attack", ensureLoggedIn("/"), (req, res, next) => {
+router.post("/attack", ensureLoggedIn("/"), (req, res, next) => {
   
-  //res.render("dashboard", { user: req.user });
+  //res.render("user/profile", { user: req.user });
 })
 
 
