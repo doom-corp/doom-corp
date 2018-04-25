@@ -138,5 +138,6 @@
         setupClickListener('changetype-all', []);
         setupClickListener('changetype-address', ['address']);
         setupClickListener('changetype-geocode', ['geocode']);
+        
       }
 
