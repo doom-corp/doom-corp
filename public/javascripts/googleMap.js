@@ -1,3 +1,5 @@
+      var markersArray = []
+      var iterator=0
 
       function initMap() {
         const map = new google.maps.Map(document.getElementById('map'), {
@@ -27,9 +29,11 @@
         autocomplete.bindTo('bounds', map);
 
         const infowindow = new google.maps.InfoWindow();
+        
         const marker = new google.maps.Marker({
           map: map,
           anchorPoint: new google.maps.Point(0, 0),
+
         });
 
         autocomplete.addListener('place_changed', function() {
@@ -62,6 +66,7 @@
             
           }));
           marker.setPosition(place.geometry.location);
+          console.log(place.geometry.location)
           marker.setVisible(true);
 
           let address = '';
@@ -108,7 +113,7 @@
             });
       
           }, function () {
-            console.log('Error in the geolocation service.');
+            console.log('You are here, we\'re not.');
           });
         } else {
           console.log('Browser does not support geolocation.');
@@ -117,7 +122,7 @@
         
          var geocoder = new google.maps.Geocoder();
        
-        var direction = "Madrid";
+        //var direction = "Madrid";
         document.getElementById("pac-input").addEventListener("change", function(){
           var direction = document.getElementById("pac-input").value;
           console.log("direction: " + direction);
@@ -129,14 +134,26 @@
               var longitude = results[0].geometry.location.lng();
               console.log(latitude + "," + longitude)
             } 
+            function addMarkers(lat, log){
+              markersArray.push({lat: lat, lng: log});
+              console.log(markersArray)
+            }
+            addMarkers(latitude, longitude);
           }); 
+
+          markersArray.forEach(arr => {
+            // var marker = new.google.maps.Marker({
+            //   position: arr,
+            //   map: map
+            // })
+          })
           
         })
-
-        
         
         setupClickListener('changetype-all', []);
         setupClickListener('changetype-address', ['address']);
         setupClickListener('changetype-geocode', ['geocode']);
       }
+
+
 
