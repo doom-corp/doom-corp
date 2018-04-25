@@ -65,7 +65,14 @@
             scaledSize: new google.maps.Size(35, 35),
             
           }));
-          marker.setPosition(place.geometry.location);
+          markersArray.forEach((mar) => {
+            console.log("en el foreach")
+            console.log(mar)
+            marker.setPosition(mar);
+          })
+
+
+          // marker.setPosition(place.geometry.location);
           console.log(place.geometry.location)
           marker.setVisible(true);
 
