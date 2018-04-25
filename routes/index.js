@@ -1,5 +1,6 @@
 const express = require('express');
 const router  = express.Router();
+const uploadCloud = require("../config/cloudinary.js");
 const ensureLoggedIn = require("../middlewares/ensureLoggedIn");
 
 
