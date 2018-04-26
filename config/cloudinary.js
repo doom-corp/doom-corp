@@ -13,7 +13,7 @@ cloudinary.config({
 var storage = cloudinaryStorage({
   cloudinary: cloudinary,
   folder: "doomCorp",
-  allowedFormats: ["jpg", "png"],
+  allowedFormats: ["jpg", "png", "jpeg"],
   filename: function(req, file, cb) {
     photo = new Date().getTime();
     cb(undefined, photo);
