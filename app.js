@@ -74,7 +74,7 @@ hbs.registerHelper("equal", function(lvalue, rvalue, options) {
 });
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = '💀💀💀 Where your evil dreams come true 💀💀💀';
 
 
 // Enable authentication using session + passport
