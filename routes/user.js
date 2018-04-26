@@ -13,23 +13,26 @@ const bcryptSalt = 10;
 
 /* GET user profile */
 router.get("/", ensureLoggedIn("/"), (req, res, next) => {
-
   // METER IFS PARA LOS DISTINTOS TIPOS DE USUARIOS
-  City.find()
-  .then((cities) => {
+  City.find().then(cities => {
     // let data = {
     //   user: req.user,
     //   cities
     // }
-    res.render("user/profile", { user: req.user, cities: JSON.stringify(cities) });
-  })
-  
-  //let rol = req.user.role;
-  
-  /* if(rol === "admin"){
-    res.render("user/profileAdmin", { user: req.user });
-  } */
 
+    User.find()
+      .then(users => {
+        const data = {
+          users: users,
+          isExecutive: req.user.role == "executive" ? true : false,
+          user: req.user,
+          cities: JSON.stringify(cities)
+        };
+        res.render("user/profile", data);
+      })
+      .catch(err => console.log("Error finding users: " + err))
+  })
+  .catch(err => console.log("Error finding cities: " + cities))
 });
 
 router.post("/changepass", ensureLoggedIn("/"), (req, res, next) => {

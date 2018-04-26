@@ -12,10 +12,7 @@
   <hr> {{!-- PERSONALIZAR --}}
   <div class="row">
 
-    {{!-- {{#equal unicorns ponies }}
-    <p>That's amazing, unicorns are actually undercover ponies</p>
-    {{/equal}} --}}
-
+    {{#if isExecutive }}
     <div class="col-3 profile-left-panel">
       {{!-- PROFILE OPTIONS --}}
       <ul>
@@ -62,7 +59,7 @@
             <button class="btn log-button">Change your password</button>
           </div>
         </form>
-         {{#if message }}
+        {{#if message }}
         <div class="error-message form-group">{{ message }}</div>
         {{/if}}
       </div>
@@ -74,13 +71,63 @@
   </div>
 </div>
 
-<script>
-  window.cities = {{{cities}}}
-</script>
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
   crossorigin="anonymous"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIszCKHrlW4gRlxCKrVivvSMueVwmntNg&libraries=places&callback=initMap"
-  async defer></script>
-<script src='/javascripts/googleMap.js'></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIszCKHrlW4gRlxCKrVivvSMueVwmntNg&libraries=places&callback=initMap" async defer></script>
+<script src='/javascripts/googleMap.js'></script> 
+
+{{else}}
+<div class="col-3 profile-left-panel">
+  {{!-- PROFILE OPTIONS --}}
+  <ul>
+    <li>
+      <button id="show-manage" class="btn">Manage your soldiers</button>
+    </li>
+    <li>
+      <button id="show-chart" class="btn">Check crime chart</button>
+    </li>
+    <li>
+      <button id="emergency-destroy" class="btn">Emergency destroy</button>
+    </li>
+  </ul>
+</div>
+<div class="col-9">
+
+  <div class="manage-wrapper">
+    <form action="manage">
+      <div class="form-group">
+        <label for="action">Choose an action</label>
+        <select class="form-control" id="action" name="action">
+          <option>Modify salary</option>
+          <option>Kill user</option>
+          <option>Throw Marc a tomato</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="users">Choose a criminal</label>
+        <select class="form-control" id="users" name="users">
+          {{#each users}}
+            <option>{{username}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="optional">New salary (just for decrease)</label>
+        <input type="text" class="form-control" id="optional" name="optional"></input>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+ 
+  <div class="crime-wrapper">
+    <canvas id="crime-canvas"></canvas>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </div>
+</div>
+{{/if}}
+
+<script>window.cities = {{{ cities }}}</script>
