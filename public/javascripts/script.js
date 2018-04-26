@@ -8,13 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   $("#payslip").click(function() {
     $("#map-wrapper").hide();
-    $("#pass-changer-wrapper").show();
-    $("#pdf").hide();
+    $("#pass-changer-wrapper").hide();
+    $("#pdf").show();
   });
 
   $("#change-pass").click(function() {
     $("#map-wrapper").hide();
-    $("#pass-changer-wrapper").hide();
-    $("#pdf").show();
+    $("#pass-changer-wrapper").show();
+    $("#pdf").hide();
   });
 }, false);

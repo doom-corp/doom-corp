@@ -21,7 +21,13 @@ router.get("/", ensureLoggedIn("/"), (req, res, next) => {
     //   user: req.user,
     //   cities
     // }
-    res.render("user/profile", { user: req.user, cities: JSON.stringify(cities) });
+    const data = {
+      isExecutive: req.user.role == "executive" ? true : false,
+      user: req.user,
+      cities: JSON.stringify(cities)
+    }
+
+    res.render("user/profile", data);
   })
   
   //let rol = req.user.role;

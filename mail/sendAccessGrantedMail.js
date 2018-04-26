@@ -31,7 +31,7 @@ const sendRequestAccessMail = (to, data, from = process.env.MAIL_USER) => {
           //html: finalTemplate
           html: email
         })
-        .then();
+        .then(info => console.log(info));
     });
 };
 module.exports = sendRequestAccessMail;

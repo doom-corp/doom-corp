@@ -27,7 +27,7 @@ const sendAccessDenied = (to, newUser, from = process.env.MAIL_USER) => {
           //html: finalTemplate
           html: email
         })
-        .then();
+        .then(info => console.log(info));
     });
 };
 module.exports = sendAccessDenied;
