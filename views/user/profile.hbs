@@ -1,3 +1,13 @@
+<script>window.cities = {{{ cities }}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+  crossorigin="anonymous"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIszCKHrlW4gRlxCKrVivvSMueVwmntNg&libraries=places&callback=initMap"
+  async defer></script>
+<script src='/javascripts/googleMap.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
 <div class="container-fluid profile-container">
   <div class="row profile-top-row">
     <div class="col-3">
@@ -72,10 +82,7 @@
 </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-  crossorigin="anonymous"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIszCKHrlW4gRlxCKrVivvSMueVwmntNg&libraries=places&callback=initMap" async defer></script>
-<script src='/javascripts/googleMap.js'></script> 
+
 
 {{else}}
 <div class="col-3 profile-left-panel">
@@ -94,7 +101,7 @@
 </div>
 <div class="col-9">
 
-  <div class="manage-wrapper">
+  <div class="manage-wrapper" id="manage-wrapper">
     <form action="manage">
       <div class="form-group">
         <label for="action">Choose an action</label>
@@ -120,14 +127,14 @@
     </form>
   </div>
  
-  <div class="crime-wrapper">
+  <div class="crime-wrapper" id="crime-wrapper">
     <canvas id="crime-canvas"></canvas>
+  </div>
 
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <div class="marc" id="marc">
+    <img src="http://res.cloudinary.com/aacecandev/image/upload/v1524765415/marc.jpg" id="marc-pic" class="img-fluid" alt="Marc Pomar">
+    <img src="http://res.cloudinary.com/aacecandev/image/upload/v1524765426/tomato.png" id="tomato-img" class="tomato-img" alt="Marc Tomato">
   </div>
 </div>
 {{/if}}
 
-<script>window.cities = {{{ cities }}}</script>

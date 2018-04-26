@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  // USER BUTTONS
+
   $("#show-map-btn").click(function() {
     $("#map-wrapper").show();
     $("#pass-changer-wrapper").hide();
@@ -18,17 +20,43 @@ document.addEventListener('DOMContentLoaded', () => {
     $("#pdf").hide();
   });
 
+  $("#show-manage").click(function() {
+    $("#manage-wrapper").show();
+    $("#crime-wrapper").hide();
+    $("#marc").hide();
+  });
+
+  $("#show-chart").click(function() {
+    $("#manage-wrapper").hide();
+    $("#crime-wrapper").show();
+    $("#marc").hide();
+  });
+
+  $("#emergency-destroy").click(function() {
+    $("#manage-wrapper").hide();
+    $("#crime-wrapper").hide();
+    $("#marc").show();
+  });
+
+  // CHART
+
   var ctx = document.getElementById("crime-canvas").getContext("2d");
   var cities = window.cities;
-  console.log(cities)
+
+  let citiesName = [];
+  cities.forEach(e => citiesName.push(e.cityName))
+
+  let deathToll = [];
+  cities.forEach(e => citiesName.push(e.deathToll));
+
   var myChart = new Chart(ctx, {
     type: "bar",
     data: {
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      labels: citiesName,
       datasets: [
         {
-          label: "# of Votes",
-          data: [12, 19, 3, 5, 2, 3],
+          label: "Lucky fools",
+          data: deathToll,
           backgroundColor: [
             "rgba(255, 99, 132, 0.2)",
             "rgba(54, 162, 235, 0.2)",
@@ -61,4 +89,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+  // MARC TOMATOES
+
+  $("#marc-pic").click( (e) => {
+    $("#tomato-img")
+      .css({ top: e.pageY-100, left: e.pageX-100 })
+      .show();
+  })
 }, false);

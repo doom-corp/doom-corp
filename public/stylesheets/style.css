@@ -65,4 +65,21 @@ a {
 #pdf {
   display: none; }
 
+#manage-wrapper {
+  display: none; }
+
+#crime-wrapper {
+  display: none; }
+
+#marc {
+  display: none; }
+
+.img-fluid {
+  max-width: 50%;
+  text-align: center; }
+
+.tomato-img {
+  display: none;
+  position: fixed; }
+
 /*# sourceMappingURL=style.css.map */

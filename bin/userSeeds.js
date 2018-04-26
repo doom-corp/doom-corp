@@ -10,9 +10,9 @@ User.collection.drop();
 
 const employees = [
   {
-  username : "Admin",
+  username : "Doctor Maligno",
   password: "1234",
-  role: "Admin"
+  role: "admin"
   }
 ];
 

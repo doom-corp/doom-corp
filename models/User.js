@@ -8,8 +8,8 @@ const userSchema = new Schema(
     password: String,
     role: {
       type: String,
-      enum: ["admin", "thug", "executive"],
-      default: "thug"
+      enum: ["admin", "executive"],
+      default: "executive"
     },
     profilePic: String,
     deathDate: Date,
