@@ -24,11 +24,11 @@ router.get("/", ensureLoggedIn("/"), (req, res, next) => {
     res.render("user/profile", { user: req.user, cities: JSON.stringify(cities) });
   })
   
-  let rol = req.user.role;
+  //let rol = req.user.role;
   
-  if(rol === "admin"){
+  /* if(rol === "admin"){
     res.render("user/profileAdmin", { user: req.user });
-  }
+  } */
 
 });
 
