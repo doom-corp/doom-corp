@@ -59,7 +59,7 @@ function initMap () {
               console.log(locations)
               
               window.location=`/save?direction=${direction}&log=${log}&lat=${lat}`
- 
+
             }
             addMarkers(latitude, longitude);
             
@@ -70,7 +70,7 @@ function initMap () {
         
     for (i = 0; i < locations.length; i++) {  
       marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        position: new google.maps.LatLng(locations[i].coordinates.lat, locations[i].coordinates.long),
         map: map
       });
     
