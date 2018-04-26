@@ -56,4 +56,13 @@ a {
 .dashboard-main-content-wrapper {
   margin-top: 40px; }
 
+#map-wrapper {
+  display: none; }
+
+#pass-changer-wrapper {
+  display: none; }
+
+.pdf {
+  display: none; }
+
 /*# sourceMappingURL=style.css.map */

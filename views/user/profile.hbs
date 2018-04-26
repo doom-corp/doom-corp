@@ -22,8 +22,12 @@
         <li>
           <input id="pac-input" class="controls" type="text" placeholder="Insert a place to attack ❤">
         </li>
-        <li>Check your payslip</li>
-        <li>Change your password</li>
+        <li>
+          <button id="payslip" class="btn">Check your payslip</button>
+        </li>
+        <li>
+          <button id="change-pass" class="btn">Change your password</button>
+        </li>
       </ul>
     </div>
     <div class="col-9">
@@ -62,8 +66,8 @@
         {{/if}}
       </div>
 
-      <div class="pdf">
-        <a href="/user/pdf" class="btn log-btn">Generate your montly payslip</a>
+      <div id="pdf">
+        <a href="/user/pdf" class="btn">Generate your montly payslip</a>
       </div>
     </div>
   </div>
