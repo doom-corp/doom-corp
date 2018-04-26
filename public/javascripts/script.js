@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let citiesName = [];
   cities.forEach(e => citiesName.push(e.cityName))
 
-  let deathToll = [];
-  cities.forEach(e => citiesName.push(e.deathToll));
+  let deaths = [];
+  cities.forEach(e => deaths.push(e.deathToll));
 
   var myChart = new Chart(ctx, {
     type: "bar",
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
       datasets: [
         {
           label: "Lucky fools",
-          data: deathToll,
+          data: deaths,
           backgroundColor: [
             "rgba(255, 99, 132, 0.2)",
             "rgba(54, 162, 235, 0.2)",
