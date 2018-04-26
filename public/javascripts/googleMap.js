@@ -66,7 +66,7 @@ function initMap () {
             
             initMap()
           })
-         
+          
         })
         
     for (i = 0; i < locations.length; i++) {  
