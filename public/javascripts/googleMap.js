@@ -3,6 +3,7 @@
       ["DoomCorp", 40.445354, -3.73492]
       
     ];
+    
     var locations = cities;
 function initMap () {
   console.log('cities')
@@ -65,17 +66,18 @@ function initMap () {
             
             initMap()
           })
-         
+          
         })
         
     for (i = 0; i < locations.length; i++) {  
+      console.log(i)
       marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i].coordinates.lat, locations[i].coordinates.long),
+        position: new google.maps.LatLng(locations[i].coordinates.lat, locations[1].coordinates.long),
         map: map
       });
     
       markers.push(marker);
-      //console.log(marker)
+      console.log(marker)
     }
 
   }
