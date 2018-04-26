@@ -55,7 +55,7 @@ const cityData = [
     }
    },    
    {
-    username: "Matt Spencer", 
+    username: "Aleister Crowley", 
     cityName: "Oslo", 
     deathToll: 287,
     coordinates : {
