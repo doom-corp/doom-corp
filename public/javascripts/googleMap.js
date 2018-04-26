@@ -3,11 +3,14 @@
       ["DoomCorp", 40.445354, -3.73492]
       
     ];
+    var locations = cities;
 function initMap () {
+  console.log('cities')
+  console.log(cities)
    
     
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 18,
+      zoom: 14,
       center: new google.maps.LatLng(40.445354, -3.73492),
     });
     
@@ -27,12 +30,12 @@ function initMap () {
             infowindow.close();
             marker.setVisible(false);
             const place = autocomplete.getPlace();
-            if (!place.geometry) {
+          /*  if (!place.geometry) {
               // User entered the name of a Place that was not suggested and
               // pressed the Enter key, or the Place Details request failed.
               window.alert("No details available for input: '" + place.name + "'");
               return;
-            }
+            }*/
           })
 
 
@@ -51,12 +54,11 @@ function initMap () {
               var longitude = results[0].geometry.location.lng();
               console.log(latitude + "," + longitude)
             } 
-            function addMarkers(log, lat){
-              locations.push(["NOMBRE", log, lat]);
+            function addMarkers(lat, log){
+              locations.push([direction, lat, log]);
               console.log(locations)
               
-              //document.getElementById("Pepe").innerHTML = log;
-              window.location=`/save?log=${log}&lat=${lat}`
+              window.location=`/save?direction=${direction}&log=${log}&lat=${lat}`
 
             }
             addMarkers(latitude, longitude);
@@ -65,7 +67,7 @@ function initMap () {
           })
          
         })
-
+        
     for (i = 0; i < locations.length; i++) {  
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
@@ -73,7 +75,7 @@ function initMap () {
       });
     
       markers.push(marker);
-
+      //console.log(marker)
     }
 
   }

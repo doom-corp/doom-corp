@@ -58,9 +58,11 @@ router.post("/newpost", uploadCloud.single("photo"), (req, res, next) => {
 /*SAVE coordinates*/
 
 router.get("/save", (req, res, next) => {
+  const cityName = req.query.direction;
   const log = req.query.log;
   const lat = req.query.lat;
   const city = new City({
+    cityName : cityName,
     coordinates : {
       lat: lat,
       long : log

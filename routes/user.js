@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require("passport");
 const router = express.Router();
 const User = require("../models/User");
+const City = require("../models/City");
 const sendPassChangedMail = require("../mail/sendPassChangedMail");
 const ensureLoggedIn = require("../middlewares/ensureLoggedIn");
 const pdfDocument = require('pdfkit');
@@ -15,8 +16,15 @@ const bcryptSalt = 10;
 router.get("/", ensureLoggedIn("/"), (req, res, next) => {
 
   // METER IFS PARA LOS DISTINTOS TIPOS DE USUARIOS
+  City.find()
+  .then((cities) => {
+    // let data = {
+    //   user: req.user,
+    //   cities
+    // }
+    res.render("user/profile", { user: req.user, cities: JSON.stringify(cities) });
+  })
 
-  res.render("user/profile", { user: req.user });
 });
 
 router.post("/changepass", ensureLoggedIn("/"),(req, res, next) => {

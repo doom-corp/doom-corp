@@ -4,7 +4,7 @@ const Schema   = mongoose.Schema;
 const citySchema = new Schema(
   {
   username: String, //Who ordered the attack
-  city: String,
+  cityName: String, //Which city it was
   coordinates : {
     lat: Number,
     long : Number
