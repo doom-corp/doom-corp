@@ -5,6 +5,7 @@ const citySchema = new Schema(
   {
   username: String, //Who ordered the attack
   cityName: String, //Which city it was
+  deathToll: Number,
   coordinates : {
     lat: Number,
     long : Number
