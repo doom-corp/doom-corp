@@ -1,12 +1,13 @@
     var locations = [
-      ["DoomCorp", 40.445354, -3.73492, 6]
+      
+      ["DoomCorp", 40.445354, -3.73492]
       
     ];
 function initMap () {
    
     
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 15,
+      zoom: 18,
       center: new google.maps.LatLng(40.445354, -3.73492),
     });
     
@@ -50,11 +51,16 @@ function initMap () {
               var longitude = results[0].geometry.location.lng();
               console.log(latitude + "," + longitude)
             } 
-            function addMarkers(lat, log){
-              locations.push(["NOMBRE", lat, log, 8]);
+            function addMarkers(log, lat){
+              locations.push(["NOMBRE", log, lat]);
               console.log(locations)
+              
+              //document.getElementById("Pepe").innerHTML = log;
+              window.location=`/save?log=${log}&lat=${lat}`
+
             }
             addMarkers(latitude, longitude);
+            
             initMap()
           })
          
@@ -67,7 +73,8 @@ function initMap () {
       });
     
       markers.push(marker);
-      console.log(marker)
+
     }
 
   }
+

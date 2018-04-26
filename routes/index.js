@@ -3,6 +3,7 @@ const router  = express.Router();
 const uploadCloud = require("../config/cloudinary.js");
 const ensureLoggedIn = require("../middlewares/ensureLoggedIn");
 const Post = require("../models/Post");
+const City = require("../models/City");
 
 
 /* GET home page */
@@ -52,5 +53,22 @@ router.post("/newpost", uploadCloud.single("photo"), (req, res, next) => {
     .then(() => res.redirect("/dashboard"))
     .catch(err => `Error creating the post ${err}`)
 });
+
+
+/*SAVE coordinates*/
+
+router.get("/save", (req, res, next) => {
+  const log = req.query.log;
+  const lat = req.query.lat;
+  const city = new City({
+    coordinates : {
+      lat: lat,
+      long : log
+    }
+  })
+  city.save().then( () => {
+    res.redirect("/user")
+  })
+})
 
 module.exports = router;
