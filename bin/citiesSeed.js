@@ -3,10 +3,6 @@ require("dotenv").config();
 const mongoose = require('mongoose');
 const City = require('../models/City');
 const dbURL = process.env.DBURL;
-mongoose.connect(dbURL);
-City.collection.drop();
-
-
 
 const cityData = [
   {
@@ -99,5 +95,22 @@ const cityData = [
       long : -1.858015
     }
    }          
+];
 
-]
+mongoose
+  .connect(dbURL)
+  .then(() => {
+    City.collection.drop();
+
+    City.create(cityData)
+      .then(cities => {
+        console.log(`DB Created, celebrities list: ${cities}`);
+        mongoose.disconnect();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  })
+  .catch(err => {
+    console.log(err);
+  });
