@@ -59,7 +59,7 @@ function initMap () {
               console.log(locations)
               
               window.location=`/save?direction=${direction}&log=${log}&lat=${lat}`
-
+ 
             }
             addMarkers(latitude, longitude);
             
