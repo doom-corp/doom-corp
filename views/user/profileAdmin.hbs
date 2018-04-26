@@ -1,0 +1,76 @@
+<div class="container-fluid profile-container">
+  <div class="row profile-top-row">
+    <div class="col-3">
+      <img width="200px" height="200px" class="img-thumbnail border" src="{{user.profilePic}}" alt="User profile pic">
+    </div>
+    <div class="col-9">
+      <h1 class="red-text">Employee: {{user.username}}</h1>
+      <h4>Profile: {{user.role}}</h4>
+      <p>Seniority: {{user.created_at}}</p>
+    </div>
+  </div>
+  
+  <div class="row">
+
+    {{!-- {{#equal unicorns ponies }}
+    <p>That's amazing, unicorns are actually undercover ponies</p>
+    {{/equal}} --}}
+
+    <div class="col-3 profile-left-panel">
+      {{!-- PROFILE OPTIONS --}}
+      <ul>
+        <li>
+          <input id="pac-input" class="controls" type="text" placeholder="Insert a place to attack ❤">
+        </li>
+        <li><button id="payslip" class="btn">Check your payslip</button></li>
+        <li><button id="change-pass" class="btn">Change your password</button></li>
+      </ul>
+    </div>
+    <div class="col-9">
+      {{!-- PROFILE OPTION SELECTED --}}
+      <div id="map-wrapper">
+        <h3>DoomCorp Map</h3>
+        <div id="type-selector" class="controls">
+          <input type="radio" name="type" id="changetype-all" checked="checked">
+          <label for="changetype-all">All</label>
+
+          <input type="radio" name="type" id="changetype-address">
+          <label for="changetype-address">Addresses</label>
+
+          <input type="radio" name="type" id="changetype-geocode">
+          <label for="changetype-geocode">Geocodes</label>
+        </div>
+        <div id="map"></div>
+      </div>
+
+      <div id="pass-changer-wrapper">
+        <form action="/user/changepass" method="POST">
+          <div class="form-group">
+            <label for="currentpass">Current password</label>
+            <input id="currentpass" class="form-control" type="text" name="currentpass" placeholder="Current password">
+          </div>
+          <div class="form-group">
+            <label for="newpass">New password</label>
+            <input id="newpass" class="form-control" type="text" name="newpass" placeholder="New password">
+          </div>
+          <div class="form-group">
+            <button class="btn log-button">Change your password</button>
+          </div>
+        </form>
+        {{#if message }}
+        <div class="error-message form-group">{{ message }}</div>
+        {{/if}}
+      </div>
+
+      <div class="pdf">
+        <a href="/user/pdf" class="btn log-btn">Generate your montly payslip</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+  crossorigin="anonymous"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIszCKHrlW4gRlxCKrVivvSMueVwmntNg&libraries=places&callback=initMap"
+  async defer></script>
+<script src='/javascripts/googleMap.js'></script>
