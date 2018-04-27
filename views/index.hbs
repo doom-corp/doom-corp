@@ -1,21 +1,42 @@
-<div class="container-fluid">
-  <div class="row index-navbar">
-    <div class="col-6 logo">LOGO IMAGE</div>
-    <div class="col-6">
+<script>
+	$(document).ready( function(){
+		$('#fire').fire({
+			speed:200,
+			maxPow:50,
+			gravity:0,
+			flameWidth:3,
+			flameHeight:0,
+			plasm:false,
+			fireTransparency:0,
+			fadingFlameSpeed:8,
+			mouseEffect:true,
+      cartoon: true,
+		});	
+	});
+    </script>
+  
+  <div class="container-fluid main-container">
+  <div class="row sign-up-navbar">
+    <div class="col-6 logo">
+      <img src="/images/logo.png" class="logo-img" alt="Logo">
+    </div>
+    <div class="col-6 main-buttons d-flex justify-content-end">
       {{#if user}}
-      <a href="/auth/logout" class="log-button">LOGOUT</a>
-      <a href="/dashboard" class="log-button">DASHBOARD</a>
-      <a href="/user" class="log-button">USER PANEL</a>
+      <a href="/auth/logout" class="main-log-button align-self-center">LOGOUT</a>
+      <a href="/dashboard" class="main-log-button align-self-center">DASHBOARD</a>
+      <a href="/user" class="main-log-button align-self-center">USER PANEL</a>
       {{else}}
-      <a href="/auth/signup" class="log-button">REQUEST ACCESS</a>
-      <a href="/auth/login" class="log-button">LOGIN</a>
+      <a href="/auth/signup" class="main-log-button align-self-center">REQUEST ACCESS</a>
+      <a href="/auth/login" class="main-log-button align-self-center">LOGIN</a>
       {{/if}}
     </div>
   </div>
   <div class="row index-main align-items-center">
     <div class="col index-main" id= "intro">
-      <h1>DOOM CORP</h1>
-      <p>{{title}}</p>
+      <h1 class="main-title">DOOM CORP</h1>
+      <h3 class="main-subtitle red-text">Where your evil dreams come true</h3>
     </div>
+    
   </div>
 </div>
+<canvas id="fire" class="fire"></canvas>

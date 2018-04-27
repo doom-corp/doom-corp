@@ -10,13 +10,13 @@
 
 <div class="container-fluid profile-container">
   <div class="row profile-top-row">
-    <div class="col-3">
-      <img width="200px" height="200px" class="img-thumbnail border" src="{{user.profilePic}}" alt="User profile pic">
+    <div class="col-3 d-flex">
+      <img width="200px" height="200px" class="img-thumbnail align-self-center border profile-img" src="{{user.profilePic}}" alt="User profile pic">
     </div>
-    <div class="col-9">
-      <h1 class="red-text">Employee: {{user.username}}</h1>
-      <h4>Profile: {{user.role}}</h4>
-      <p>Seniority: {{user.created_at}}</p>
+    <div class="col-9 profile-info d-flex justify-content-around">
+      <h1 class="align-self-center">Employee: {{user.username}}</h1>
+      <h4 class="align-self-center">Profile: {{user.role}}</h4>
+      <h6 class="align-self-center">Seniority: {{user.created_at}}</h6>
     </div>
   </div>
   <hr> {{!-- PERSONALIZAR --}}
@@ -25,48 +25,31 @@
     {{#if isExecutive }}
     <div class="col-3 profile-left-panel">
       {{!-- PROFILE OPTIONS --}}
-      <ul>
-        <li>
-          <button id="show-map-btn" class="btn">Make it bum them</button>
-        </li>
-        <li>
-          <button id="payslip" class="btn">Check your payslip</button>
-        </li>
-        <li>
-          <button id="change-pass" class="btn">Change your password</button>
-        </li>
-      </ul>
+      <button id="show-map-btn" class="btn form-btn-custom">Make it bum them</button>
+      <button id="payslip" class="btn form-btn-custom">Check your payslip</button>
+      <button id="change-pass" class="btn form-btn-custom">Change your password</button>
     </div>
     <div class="col-9">
       {{!-- PROFILE OPTION SELECTED --}}
       <div id="map-wrapper">
-        <h3>DoomCorp Map</h3>
-        <div id="type-selector" class="controls">
-          <input type="radio" name="type" id="changetype-all" checked="checked">
-          <label for="changetype-all">All</label>
-
-          <input type="radio" name="type" id="changetype-address">
-          <label for="changetype-address">Addresses</label>
-
-          <input type="radio" name="type" id="changetype-geocode">
-          <label for="changetype-geocode">Geocodes</label>
-        </div>
-        <div id="map"></div>
+        <h3 class="center-text">DoomCorp Map</h3>
+        <img src="/images/punto_de_mira.png" class="punto-de-mira" alt="Punto de mira">
+        <div id="map" class="map"></div>
         <input id="pac-input" class="controls" type="text" placeholder="Insert a place to attack ❤">
       </div>
 
-      <div id="pass-changer-wrapper">
+      <div id="pass-changer-wrapper" class="pass-changer">
         <form action="/user/changepass" method="POST">
           <div class="form-group">
-            <label for="currentpass">Current password</label>
+            <label for="currentpass" class="center-text">Current password</label>
             <input id="currentpass" class="form-control" type="text" name="currentpass" placeholder="Current password">
           </div>
-          <div class="form-group">
+          <div class="form-group" class="center-text">
             <label for="newpass">New password</label>
             <input id="newpass" class="form-control" type="text" name="newpass" placeholder="New password">
           </div>
           <div class="form-group">
-            <button class="btn log-button">Change your password</button>
+            <button class="btn form-btn-custom">Change your password</button>
           </div>
         </form>
         {{#if message }}
@@ -74,8 +57,8 @@
         {{/if}}
       </div>
 
-      <div id="pdf">
-        <a href="/user/pdf" class="btn">Generate your montly payslip</a>
+      <div id="pdf" class="pdf">
+        <a href="/user/pdf" class="btn form-btn-custom">Generate your montly payslip</a>
       </div>
     </div>
   </div>
@@ -87,23 +70,15 @@
 {{else}}
 <div class="col-3 profile-left-panel">
   {{!-- PROFILE OPTIONS --}}
-  <ul>
-    <li>
-      <button id="show-manage" class="btn">Manage your soldiers</button>
-    </li>
-    <li>
-      <button id="show-chart" class="btn">Check crime chart</button>
-    </li>
-    <li>
-      <button id="emergency-destroy" class="btn">Emergency destroy</button>
-    </li>
-  </ul>
+      <button id="show-manage" class="btn form-btn-custom">Manage your soldiers</button>
+      <button id="show-chart" class="btn form-btn-custom">Check crime chart</button>
+      <button id="emergency-destroy" class="btn form-btn-custom">Emergency destroy</button>
 </div>
 <div class="col-9">
 
   <div class="manage-wrapper" id="manage-wrapper">
     <form action="manage">
-      <div class="form-group">
+      <div class="form-group center-text">
         <label for="action">Choose an action</label>
         <select class="form-control" id="action" name="action">
           <option>Modify salary</option>
@@ -111,22 +86,22 @@
           <option>Throw Marc a tomato</option>
         </select>
       </div>
-      <div class="form-group">
+      <div class="form-group center-text">
         <label for="users">Choose a criminal</label>
         <select class="form-control" id="users" name="users">
           {{#each users}}
-            <option>{{username}}</option>
+          <option>{{username}}</option>
           {{/each}}
         </select>
       </div>
-      <div class="form-group">
+      <div class="form-group center-text">
         <label for="optional">New salary (just for decrease)</label>
         <input type="text" class="form-control" id="optional" name="optional"></input>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn form-btn-custom">BE FIRE MY FRIEND</button>
     </form>
   </div>
- 
+
   <div class="crime-wrapper" id="crime-wrapper">
     <canvas id="crime-canvas"></canvas>
   </div>
@@ -137,4 +112,3 @@
   </div>
 </div>
 {{/if}}
-

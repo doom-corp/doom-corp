@@ -1,12 +1,78 @@
+// FONTS
+@font-face {
+    font-family: 'bloody-title';
+    src: url('/fonts/norfok-incredible-font-design_pieces-nfi/piecesnfi.ttf') format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'bloody-text';
+    src: url('/fonts/someshinzz_bacon/Bacon.otf') format("truetype");
+}
+
 // HELPERS
+.row {
+    margin: 0;
+    padding: 0;
+}
+
 * {
     margin: 0;
     padding: 0;
     color: red;
+    font-family: 'bloody-title';
 }
 
 .red-text {
     color: red;
+}
+
+.form-title {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.form-custom {
+    border: 2px solid red;
+    line-height: 30px;
+    color: red;
+    background-color: black;
+    text-align: center;
+    font-size: 16px;
+}
+
+.form-btn-custom {
+    margin-top: 15px;
+    background-color: red;
+    color: black;
+    width: 100%;
+    font-size: 20px;
+    font-weight: bolder;
+    border-radius: 8px;
+}
+
+.form-btn-custom:hover {
+    background-color: white;
+    border: 2px solid red;
+    color: red;
+}
+
+.center-text {
+    margin-top: 5px;
+    text-align: center;
+}
+
+.fire {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 300px;
+}
+
+.fire-row {
+    padding: 0;
+    height: 350px;
 }
 
 // IDs
@@ -38,41 +104,79 @@ a {
     color: #00B7FF;
 }
 
+// MAIN
 .index-navbar {
     background-color: red;
-    height: 60px;
+    height: 70px;
 }
 
 .index-main {
-    color: red;
+    height: 55vh;
+    font-family: 'bloody-title';
 }
 
-.log-button {
-    padding: 5px 15px;
-    border: 2px solid black;
+.logo {
+    padding: 3px;
+}
+
+.logo-img {
+    width: 80px;
+    margin-left: 100px;
+}
+
+.main-log-button {
+    background-color: black;
+    color: red;
+    font-weight: bolder;
+    margin-right: 20px;
+    padding: 20px 30px;
+    border-radius: 8px;
+    font-size: 20px;
+}
+
+.main-log-button:hover {
+    background-color: white;
+}
+
+a.main-log-button {
+    color: red;
+    text-decoration: none;
+}
+
+.main-container {
+    width: 100%;
+    height: 66vh;
+}
+
+.main-title {
+    color: red;
+    padding-top: 200px;
+    font-size: 100px;
+}
+
+// SIGN UP
+.sign-up-navbar {
     background-color: red;
+    height: 80px;
 }
 
 .sign-up-container {
-    width: 20%;
-    margin-top: 20%;
+    width: 30%;
 }
 
-// PROFILE
-.profile-container {
-    width: 100%;
+.signup {
+    padding-top: 1%;
 }
 
-.profile-top-row {
-    width: 90%;
-    margin: 0 auto;
-    padding: 30px 0px;
-    border-bottom: 2px solid white;
+.sign-img {
+    width: 80px;
+    margin-right: 100px;
 }
 
-.profile-left-panel {
-    height: 600px;
-    border-right: 2px solid white;
+// LOGIN 
+.login {
+    margin-top: 8% !important;
+    margin-bottom: 3% !important;
 }
 
 // DASHBOARD
@@ -80,7 +184,113 @@ a {
     margin-top: 40px;
 }
 
+.btn-dashboard {
+    width: 100%;
+}
+
+.dashboard-textarea {
+    color: black;
+    border-radius: 8px;
+    border: 2px solid red;
+}
+
+.old-post {
+    margin-top: 5%;
+}
+
+.post-content {
+    margin-top: 5%;
+    box-sizing: border-box;
+}
+
+.post-pic {
+    margin-top: 3%;
+    width: 100%;
+    text-align: center;
+}
+
+.margin-fix {
+    margin-top: 10px;
+}
+
 // PROFILE
+.profile-container {
+    width: 100%;
+}
+
+.profile-img {
+    border: 2px solid red;
+    width: 300px;
+    max-height: 200px;
+}
+
+.profile-info {
+    padding-top: 30px;
+}
+
+.profile-top-row {
+    width: 90%;
+    margin: 0 auto;
+    padding: 30px 0px;
+    border-bottom: 2px solid red;
+}
+
+.profile-left-panel {
+    padding-left: 5%;
+    height: 600px;
+    border-right: 2px dotted red;
+}
+
+// MANAGE SOLDIERS
+.manage-wrapper {
+    width: 50%;
+    margin: 10% auto;
+}
+
+// CRIME CHART
+.crime-wrapper {
+    width: 80%;
+    margin: 0 auto;
+}
+
+// MARC
+.marc {
+    display: none;
+    max-width: 40%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tomato-img {
+    display: none;
+    position: fixed;
+}
+
+.map {
+    border: 2px solid red;
+    border-radius: 50px;
+    z-index: 0;
+}
+
+.pdf {
+    width: 30%;
+    margin: 20% auto;
+}
+
+.pass-changer {
+    width: 50%;
+    margin: 10% auto;
+}
+
+.punto-de-mira {
+    position: absolute;
+    top: 200px;
+    left: 600px;
+    z-index: 1;
+}
+
+// HIDERS
+
 #map-wrapper {
     display: none;
 }
@@ -99,18 +309,4 @@ a {
 
 #crime-wrapper {
     display: none;
-}
-
-#marc {
-    display: none;
-}
-
-.img-fluid {
-    max-width: 50%;
-    text-align: center;
-}
-
-.tomato-img {
-    display: none;
-    position: fixed;
 }

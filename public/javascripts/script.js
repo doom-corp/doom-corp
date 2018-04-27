@@ -78,10 +78,27 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     },
     options: {
+      legend: {
+        labels: {
+          fontColor: "red",
+          fontSize: 18
+        }
+      },
       scales: {
         yAxes: [
           {
             ticks: {
+              fontColor: "red",
+              fontSize: 20,
+              beginAtZero: true
+            }
+          }
+        ],
+        xAxes: [
+          {
+            ticks: {
+              fontColor: "red",
+              fontSize: 20,
               beginAtZero: true
             }
           }

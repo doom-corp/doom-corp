@@ -1,14 +1,36 @@
-<div class="container sign-up-container">
-  <h2 class="red-text">Login</h2>
+<script>
+  $(document).ready(function () {
+    $('#fire').fire({
+      speed: 200,
+      maxPow: 50,
+      gravity: 0,
+      flameWidth: 3,
+      flameHeight: 0,
+      plasm: false,
+      fireTransparency: 0,
+      fadingFlameSpeed: 8,
+      mouseEffect: true,
+      cartoon: true,
+    });
+  });
+</script>
 
+<div class="row sign-up-navbar">
+  <div class="col-6 logo">
+    <img src="/images/logo.png" class="logo-img" alt="Logo">
+  </div>
+  <div class="col-6 d-flex justify-content-end">
+    <a href="/"><img src="/images/back.png" class="sign-img" alt="back to home"></a>
+  </div>
+
+<div class="container sign-up-container login">
+  <h2 class="red-text form-title">Login</h2>
   <form action="/auth/login" method="POST" id="form-container">
     <div class="form-group">
-      <label for="username">Username</label>
-      <input id="username" type="text" name="username" placeholder="JonSnow">
+      <input id="username" class="form-control form-custom" type="text" name="username" placeholder="evil employee">
     </div>
     <div class="form-group">
-      <label for="password">Password</label>
-      <input id="password" type="password" name="password" placeholder="Your password">
+      <input id="password" class="form-control form-custom" type="password" name="password" placeholder="Your password">
     </div>
 
     {{#if message }}
@@ -18,11 +40,12 @@
     {{/if}}
 
     <div class="form-group">
-      <button class="btn log-button">Login</button>
-      <p class="account-message">
+      <button class="btn form-group form-btn-custom">Login</button>
+      <p class="account-message center-text">
         <span class="red-text">Don't have an account yet?</span>
         <a href="/auth/signup">Signup</a>
       </p>
     </div>
   </form>
 </div>
+<canvas id="fire" class="fire"></canvas>

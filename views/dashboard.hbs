@@ -1,33 +1,32 @@
 <div class="container-fluid">
   <div class="row index-navbar">
     <div class="col-6 logo">LOGO IMAGE</div>
-    <div class="col-6">
+    <div class="col-6 main-buttons d-flex justify-content-end">
       {{#if user}}
-      <a href="/auth/logout" class="log-button">LOGOUT</a>
-      <a href="/user" class="log-button">USER PANEL</a>
+      <a href="/auth/logout" class="main-log-button align-self-center">LOGOUT</a>
+      <a href="/user" class="main-log-button align-self-center">USER PANEL</a>
       {{/if}}
     </div>
   </div>
   <div class="row dashboard-main-content-wrapper">
-    <div class="col-2">LEFT SIDEBAR</div>
+    <div class="col-2"></div>
     
     <div class="col-8">
 
       <div class="new-post">
         <form action="/newpost" method="POST" enctype="multipart/form-data">
-          <div class="form-group">
-            <button class="btn log-button">SHARE YOUR NIGHTMARES</button>
-            <div class="custom-file">
+          <div class="form-group margin-fix">
+            <button class="btn form-btn-custom btn-dashboard">SHARE YOUR NIGHTMARES</button>
+            <div class="custom-file margin-fix">
               <input type="file" class="custom-file-input" id="photo" name="photo">
-              <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+              <label class="custom-file-label form-btn-custom" for="photo">Choose file</label>
             </div>
           </div>
-          <div class="form-group">
-            <label for="posttitle">Title</label>
-            <input id="posttitle" class="form-control" type="text" name="posttitle" placeholder="Post title">
+          <div class="form-group margin-fix" style="margin-top: 40px">
+            <input id="posttitle" class="form-control form-btn-custom center-text" type="text" name="posttitle" placeholder="Post title">
           </div>
-          <div class="form-group">
-            <textarea name="postcontent" id="postcontent" cols="30" rows="10"></textarea>
+          <div class="form-group margin-fix">
+            <textarea name="postcontent" class="dashboard-textarea" id="postcontent" cols="135" rows="10"></textarea>
           </div>
         </form>
       </div>
@@ -38,21 +37,21 @@
 
        {{#each posts}}
       <div class="old-post">
-        <div class="post-title">
-          <p>{{title}}</p>
+        <div class="post-title center-text">
+          <h2>{{title}}</h2>
           <small>By {{creatorId.username}} // {{created_at}}</small>
         </div>
         <div class="post-pic">
           <img src="{{postPic}}" alt="Post pic">
         </div>
         <div class="post-content">
-          <p>{{content}}</p>
+          <p class="post-content">{{content}}</p>
         </div>
       </div>
       {{/each}}
 
     </div>
 
-    <div class="col-2">RIGHT SIDEBAR</div>
+    <div class="col-2"></div>
   </div>
 </div>
