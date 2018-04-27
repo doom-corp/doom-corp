@@ -13,7 +13,8 @@ const userSchema = new Schema(
     },
     profilePic: String,
     deathDate: Date,
-    department: String
+    department: String,
+    salary: String
   },
   {
     timestamps: {

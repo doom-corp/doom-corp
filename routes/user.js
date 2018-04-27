@@ -78,6 +78,28 @@ router.post("/changepass", ensureLoggedIn("/"), (req, res, next) => {
     .catch(err => console.log("User not found:" + err));
 });
 
+router.post("/manage", (req, res, next) => {
+  let action = req.body.action;
+  let lucky = req.body.lucky;
+  let optional = req.body.optional;
+
+  if(action === "Modify salary") {
+    
+    User.findOneAndUpdate({username: lucky}, {salary: optional})
+    .then( (user) => {
+      console.log(user);
+      res.redirect("/user")
+    })
+    .catch(err => console.log(err))
+  }
+
+  if (action === "Kill user") {
+    User.findOneAndRemove({ username: lucky })
+      .then(() => res.redirect("/user"))
+      .catch(err => console.log(err))
+  }
+})
+
 router.get("/pdf", (req, res, next) => {
   let doc = new pdfDocument({
     margins: {
@@ -147,7 +169,7 @@ router.get("/pdf", (req, res, next) => {
   doc.text(text, 50, 180);
 
   // Employee income content
-  text = `incomes €`;
+  text = req.user.salary + " €";
   doc.fontSize(16);
   doc.fillColor("black");
   doc.text(text, 460, 220);
